@@ -1,0 +1,30 @@
+[submodule "provisioning/roles/geerlingguy.ntp"]
+	path = provisioning/roles/geerlingguy.ntp
+	url = https://github.com/geerlingguy/ansible-role-ntp.git
+[submodule "provisioning/roles/geerlingguy.composer"]
+	path = provisioning/roles/geerlingguy.composer
+	url = https://github.com/geerlingguy/ansible-role-composer.git
+[submodule "provisioning/roles/geerlingguy.drush"]
+	path = provisioning/roles/geerlingguy.drush
+	url = https://github.com/geerlingguy/ansible-role-drush.git
+[submodule "provisioning/roles/geerlingguy.php"]
+	path = provisioning/roles/geerlingguy.php
+	url = https://github.com/geerlingguy/ansible-role-php.git
+[submodule "provisioning/roles/geerlingguy.php-mysql"]
+	path = provisioning/roles/geerlingguy.php-mysql
+	url = https://github.com/geerlingguy/ansible-role-php-mysql.git
+[submodule "provisioning/roles/geerlingguy.mysql"]
+	path = provisioning/roles/geerlingguy.mysql
+	url = https://github.com/geerlingguy/ansible-role-mysql.git
+[submodule "provisioning/roles/geerlingguy.apache"]
+	path = provisioning/roles/geerlingguy.apache
+	url = https://github.com/geerlingguy/ansible-role-apache.git
+[submodule "provisioning/roles/geerlingguy.firewall"]
+	path = provisioning/roles/geerlingguy.firewall
+	url = https://github.com/geerlingguy/ansible-role-firewall.git
+[submodule "provisioning/roles/geerlingguy.git"]
+	path = provisioning/roles/geerlingguy.git
+	url = https://github.com/geerlingguy/ansible-role-git.git
+[submodule "provisioning/roles/geerlingguy.repo-remi"]
+	path = provisioning/roles/geerlingguy.repo-remi
+	url = https://github.com/geerlingguy/ansible-role-repo-remi.git

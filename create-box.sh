@@ -2,7 +2,7 @@
 
 set -e
 
-#export PACKER_LOG=1
-rm packer_virtualbox-iso_virtualbox.box || true
-packer validate kit.json
-packer build kit.json
+rm -rf output-virtualbox-iso || true
+git submodule update
+packer validate kit-box.json
+packer build kit-box.json

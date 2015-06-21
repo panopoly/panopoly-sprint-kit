@@ -19,6 +19,7 @@
     "type": "virtualbox-iso",
     "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
     "guest_os_type": "Ubuntu_64",
+    "boot_wait": "4s",
     "headless": false,
     "format": "ova",
     "http_directory": "http",
@@ -27,12 +28,35 @@
     "iso_checksum_type": "md5",
     "ssh_username": "{{user `user`}}",
     "ssh_password": "{{user `password`}}",
-    "ssh_wait_timeout": "10m",
-    "shutdown_command": "echo '{{user `user`}}' | sudo -h shutdown now",
+    "ssh_wait_timeout": "30m",
+    "shutdown_command": "echo '{{user `user`}}'|sudo -S shutdown -P now",
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "2048"],
       ["modifyvm", "{{.Name}}", "--cpus", "4"]
     ],
     "virtualbox_version_file": ".vbox_version"
-  }]
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo '{{user `user`}}' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/packer-setup.sh"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_dir": "provisioning",
+      "playbook_file": "provisioning/playbook.yml",
+      "inventory_file": "provisioning/inventory",
+      "role_paths": [
+        "provisioning/roles/geerlingguy.apache",
+        "provisioning/roles/geerlingguy.composer",
+        "provisioning/roles/geerlingguy.drush",
+        "provisioning/roles/geerlingguy.git",
+        "provisioning/roles/geerlingguy.mysql",
+        "provisioning/roles/geerlingguy.ntp",
+        "provisioning/roles/geerlingguy.php",
+        "provisioning/roles/geerlingguy.php-mysql"
+      ]
+    }
+  ]
 }
