@@ -8,7 +8,7 @@
     "boot_command": [
       "<esc><esc><enter><wait>",
       "/install/vmlinuz noapic ",
-      "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+      "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed-server.cfg ",
       "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
       "hostname={{user `hostname` }} ",
       "fb=false debconf/frontend=noninteractive ",
@@ -21,7 +21,6 @@
     "guest_os_type": "Ubuntu_64",
     "boot_wait": "4s",
     "headless": false,
-    "format": "ova",
     "http_directory": "http",
     "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04.2-server-amd64.iso",
     "iso_checksum": "83aabd8dcf1e8f469f3c72fff2375195",
@@ -57,6 +56,12 @@
         "provisioning/roles/geerlingguy.php",
         "provisioning/roles/geerlingguy.php-mysql"
       ]
+    }
+  ],
+  "post-processors": [
+    {
+      "output": "{{.Provider}}-panopoly-kit.box",
+      "type": "vagrant"
     }
   ]
 }
