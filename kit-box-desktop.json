@@ -40,7 +40,12 @@
     {
       "type": "shell",
       "execute_command": "echo '{{user `user`}}' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "script": "scripts/packer-setup.sh"
+      "script": "scripts/packer-setup-desktop.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo '{{user `user`}}' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/packer-ansible.sh"
     },
     {
       "type": "ansible-local",

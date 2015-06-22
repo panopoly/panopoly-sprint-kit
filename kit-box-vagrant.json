@@ -42,6 +42,11 @@
       "script": "scripts/packer-setup-vagrant.sh"
     },
     {
+      "type": "shell",
+      "execute_command": "echo '{{user `user`}}' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/packer-ansible.sh"
+    },
+    {
       "type": "ansible-local",
       "playbook_dir": "provisioning",
       "playbook_file": "provisioning/playbook.yml",

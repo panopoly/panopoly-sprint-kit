@@ -1,6 +1,4 @@
 #!/bin/bash
-echo "panopoly        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
-sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
 
 # Install Ansible repository.
 apt-get -y update && apt-get -y upgrade
