@@ -8,7 +8,7 @@
     "boot_command": [
       "<esc><esc><enter><wait>",
       "/install/vmlinuz noapic ",
-      "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed-desktop.cfg ",
+      "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
       "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
       "hostname={{user `hostname` }} ",
       "fb=false debconf/frontend=noninteractive ",
@@ -62,6 +62,14 @@
         "provisioning/roles/geerlingguy.php",
         "provisioning/roles/geerlingguy.php-mysql"
       ]
+    },
+    {
+      "type": "shell",
+      "environment_vars": [
+        "SSH_USERNAME={{user `user`}}"
+      ],
+      "execute_command": "echo '{{user `user`}}' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/packer-install-gui.sh"
     },
     {
       "type": "shell",
