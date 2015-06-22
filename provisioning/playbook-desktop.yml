@@ -34,6 +34,9 @@
     - geerlingguy.drush
 
   tasks:
+    - name: Copy panopoly-kit command
+      copy: src=files/panopoly-kit dest=/usr/local/bin/panopoly-kit mode=0751
+
     # Cleanup tasks.
     - name: Remove unneeded packages.
       apt: "pkg={{ item }} state=absent"
@@ -60,12 +63,3 @@
       with_items:
         - apt-get -y autoremove
         - apt-get -y clean
-
-#    - name: Add Elementary OS PPA
-#      apt_repository: repo='ppa:elementary-os/daily'
-
-#    - name: Update caches
-#      apt: update_cache=yes cache_valid_time=3600
-
-#    - name: Install Pantheon UI
-#      apt: name=elementary-desktop state=installed
