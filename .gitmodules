@@ -28,3 +28,6 @@
 [submodule "provisioning/roles/geerlingguy.repo-remi"]
 	path = provisioning/roles/geerlingguy.repo-remi
 	url = https://github.com/geerlingguy/ansible-role-repo-remi.git
+[submodule "provisioning/roles/geerlingguy.packer-debian"]
+	path = provisioning/roles/geerlingguy.packer-debian
+	url = https://github.com/geerlingguy/ansible-role-packer-debian.git

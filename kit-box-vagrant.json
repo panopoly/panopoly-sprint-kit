@@ -1,14 +1,14 @@
 {
   "variables": {
-    "user": "panopoly",
-    "password": "panopoly",
+    "user": "vagrant",
+    "password": "vagrant",
     "hostname": "panopoly-kit.dev"
   },
   "builders": [{
     "boot_command": [
       "<esc><esc><enter><wait>",
       "/install/vmlinuz noapic ",
-      "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed-server.cfg ",
+      "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed-vagrant.cfg ",
       "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
       "hostname={{user `hostname` }} ",
       "fb=false debconf/frontend=noninteractive ",
@@ -39,7 +39,7 @@
     {
       "type": "shell",
       "execute_command": "echo '{{user `user`}}' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "script": "scripts/packer-setup.sh"
+      "script": "scripts/packer-setup-vagrant.sh"
     },
     {
       "type": "ansible-local",
@@ -47,6 +47,7 @@
       "playbook_file": "provisioning/playbook.yml",
       "inventory_file": "provisioning/inventory",
       "role_paths": [
+        "provisioning/roles/geerlingguy.packer-debian",
         "provisioning/roles/geerlingguy.apache",
         "provisioning/roles/geerlingguy.composer",
         "provisioning/roles/geerlingguy.drush",
@@ -56,6 +57,15 @@
         "provisioning/roles/geerlingguy.php",
         "provisioning/roles/geerlingguy.php-mysql"
       ]
+    },
+    {
+      "type": "shell",
+      "inline": "rm -f /home/vagrant/*.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo '{{user `user`}}' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/packer-cleanup.sh"
     }
   ],
   "post-processors": [

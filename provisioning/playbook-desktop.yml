@@ -1,0 +1,71 @@
+---
+- hosts: panopoly
+  gather_facts: yes
+  sudo: yes
+
+  vars:
+    - hostname: panopoly-kit.dev
+    - ntp_timezone: America/Chicago
+    - mysql_root_password: root
+    - mysql_databases:
+        - { name: panopoly }
+    - apache_vhosts:
+        - { servername: 'panopoly-kit.dev', documentroot: '/var/www/panopoly-kit' }
+
+  pre_tasks:
+    - name: Update apt cache if needed.
+      apt: update_cache=yes cache_valid_time=3600
+
+    - name: Install wget, curl, vim
+      apt: "name={{ item }} state=installed"
+      with_items:
+        - wget
+        - curl
+        - vim
+
+  roles:
+    - geerlingguy.git
+    - geerlingguy.ntp
+    - geerlingguy.mysql
+    - geerlingguy.apache
+    - geerlingguy.php
+    - geerlingguy.php-mysql
+    - geerlingguy.composer
+    - geerlingguy.drush
+
+  tasks:
+    # Cleanup tasks.
+    - name: Remove unneeded packages.
+      apt: "pkg={{ item }} state=absent"
+      with_items:
+        - ppp
+        - pppconfig
+        - pppoeconf
+        - cpp
+        - gcc
+        - g++
+        - libx11-data
+        - xauth
+        - libxmuu1
+        - libxcb1
+        - libx11-6
+        - libxext6
+        - linux-source
+
+    - name: Remove uneeded packages (by regex).
+      shell: "apt-get -y remove '.*-dev$'"
+
+    - name: Clean up apt.
+      command: "{{ item }}"
+      with_items:
+        - apt-get -y autoremove
+        - apt-get -y clean
+
+#    - name: Add Elementary OS PPA
+#      apt_repository: repo='ppa:elementary-os/daily'
+
+#    - name: Update caches
+#      apt: update_cache=yes cache_valid_time=3600
+
+#    - name: Install Pantheon UI
+#      apt: name=elementary-desktop state=installed

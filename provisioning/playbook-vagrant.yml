@@ -17,6 +17,7 @@
       apt: update_cache=yes cache_valid_time=3600
 
   roles:
+    - geerlingguy.packer-debian
     - geerlingguy.ntp
     - geerlingguy.mysql
     - geerlingguy.apache
@@ -24,3 +25,11 @@
     - geerlingguy.php-mysql
     - geerlingguy.composer
     - geerlingguy.drush
+
+  tasks:
+    - apt: "name={{ item }} state=installed"
+      with_items:
+        - git
+        - wget
+        - curl
+        - vim
