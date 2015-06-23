@@ -61,16 +61,9 @@
         "provisioning/roles/geerlingguy.mysql",
         "provisioning/roles/geerlingguy.ntp",
         "provisioning/roles/geerlingguy.php",
-        "provisioning/roles/geerlingguy.php-mysql"
+        "provisioning/roles/geerlingguy.php-mysql",
+        "provisioning/roles/panopoly.kit-ui"
       ]
-    },
-    {
-      "type": "shell",
-      "environment_vars": [
-        "SSH_USERNAME={{user `user`}}"
-      ],
-      "execute_command": "echo '{{user `user`}}' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "script": "scripts/packer-install-gui.sh"
     },
     {
       "type": "shell",

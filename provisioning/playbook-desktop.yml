@@ -32,34 +32,8 @@
     - geerlingguy.php-mysql
     - geerlingguy.composer
     - geerlingguy.drush
+    - panopoly.kit-ui
 
   tasks:
     - name: Copy panopoly-kit command
       copy: src=files/panopoly-kit dest=/usr/local/bin/panopoly-kit mode=0751
-
-    # Cleanup tasks.
-    - name: Remove unneeded packages.
-      apt: "pkg={{ item }} state=absent"
-      with_items:
-        - ppp
-        - pppconfig
-        - pppoeconf
-        - cpp
-        - gcc
-        - g++
-        - libx11-data
-        - xauth
-        - libxmuu1
-        - libxcb1
-        - libx11-6
-        - libxext6
-        - linux-source
-
-    - name: Remove uneeded packages (by regex).
-      shell: "apt-get -y remove '.*-dev$'"
-
-    - name: Clean up apt.
-      command: "{{ item }}"
-      with_items:
-        - apt-get -y autoremove
-        - apt-get -y clean

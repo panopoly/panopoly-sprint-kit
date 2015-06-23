@@ -16,6 +16,13 @@
     - name: Update apt cache if needed.
       apt: update_cache=yes cache_valid_time=3600
 
+    - apt: "name={{ item }} state=installed"
+      with_items:
+        - git
+        - wget
+        - curl
+        - vim
+
   roles:
     - geerlingguy.packer-debian
     - geerlingguy.ntp
@@ -29,10 +36,3 @@
   tasks:
     - name: Copy panopoly-kit command
       copy: src=files/panopoly-kit dest=/usr/local/bin/panopoly-kit mode=0751
-
-    - apt: "name={{ item }} state=installed"
-      with_items:
-        - git
-        - wget
-        - curl
-        - vim
