@@ -9,4 +9,3 @@ apt-add-repository ppa:ansible/ansible
 # Install Ansible.
 apt-get -y update
 apt-get -y install ansible
-

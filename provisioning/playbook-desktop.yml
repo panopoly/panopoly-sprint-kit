@@ -19,6 +19,7 @@
     - name: Install wget, curl, vim
       apt: "name={{ item }} state=installed"
       with_items:
+        - git
         - wget
         - curl
         - vim
@@ -26,14 +27,21 @@
   roles:
     - geerlingguy.git
     - geerlingguy.ntp
-    - geerlingguy.mysql
     - geerlingguy.apache
     - geerlingguy.php
-    - geerlingguy.php-mysql
     - geerlingguy.composer
     - geerlingguy.drush
+    # kit-ui ismaking the mysql role go crazy with notify.
     - panopoly.kit-ui
+    - geerlingguy.mysql
+    - geerlingguy.php-mysql
 
   tasks:
     - name: Copy panopoly-kit command
       copy: src=files/panopoly-kit dest=/usr/local/bin/panopoly-kit mode=0751
+
+    - name: Clean up apt.
+      command: "{{ item }}"
+      with_items:
+        - apt-get -y autoremove
+        - apt-get -y clean
