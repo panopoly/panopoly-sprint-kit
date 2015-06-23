@@ -1,3 +1,39 @@
 #!/usr/bin/env bash
 
 echo "Welcome to the Panopoly Sprint Kit"
+
+PANOPOLY_HOME=$HOME/Desktop/panopoly
+
+# Setup Panopoly source code.
+if ! [ -d "$PANOPOLY_HOME" ]; then
+	git clone --branch 7.x-1.x http://git.drupal.org/project/panopoly.git $PANOPOLY_HOME
+
+	# TODO: Copy behat.yml and build.properties into place.
+
+	# TODO: Remove this once Issue #2509166 is committed.
+	PANOPOLY_PHING_PATCH=https://www.drupal.org/files/issues/panopoly-phing-2509166-1.patch
+	MYTMPDIR=$(mktemp -dt panopoly-kit-XXX)
+	mkdir $MYTMPDIR
+	wget $PANOPOLY_PHING_PATCH -O $MYTMPDIR/issue2509166.patch
+	(cd $PANOPOLY_HOME && patch -p1 < $MYTMPDIR/issue2509166.patch)
+	rm -rf $MYTMPDIR
+
+	# TODO: Install all our dependencies with composer.
+	#(cd $PANOPOLY_HOME && composer global install)
+
+	# Build, install, and test Panopoly.
+	# TODO: Actually do the install and test steps once they exist!
+	(cd $PANOPOLY_HOME && phing build-core);
+fi
+
+# If we are in desktop mode, then we start a couple default applications!
+if [ -n "$DISPLAY" ]; then
+	# TODO: Detect if PHPStorm is installed. If not, download the installer
+	#       and run it. IF so, just start PHPStorm.
+
+	# TODO: Open a web-browser pointing at the local Panopoly site.
+
+	# TODO: Open a web-browser pointing at the sprint document.
+	true
+fi
+
