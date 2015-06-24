@@ -3,20 +3,15 @@
   gather_facts: yes
   sudo: yes
 
-  vars:
-    - hostname: panopoly-kit.dev
-    - ntp_timezone: America/Chicago
-    - mysql_root_password: root
-    - mysql_databases:
-        - { name: panopoly }
-    - apache_vhosts:
-        - { servername: 'panopoly-kit.dev', documentroot: '/var/www/panopoly-kit' }
+  vars_files:
+    - config/main.yml
 
   pre_tasks:
     - name: Update apt cache if needed.
       apt: update_cache=yes cache_valid_time=3600
 
-    - apt: "name={{ item }} state=installed"
+    - name: Install git, wget, curl, vim
+      apt: "name={{ item }} state=installed"
       with_items:
         - git
         - wget
@@ -32,7 +27,4 @@
     - geerlingguy.php-mysql
     - geerlingguy.composer
     - geerlingguy.drush
-
-  tasks:
-    - name: Copy panopoly-kit command
-      copy: src=files/panopoly-kit dest=/usr/local/bin/panopoly-kit mode=0755
+    - panopoly.kit

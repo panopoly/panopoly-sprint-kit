@@ -1,0 +1,12 @@
+---
+- name: Copy panopoly-kit command
+  copy: src=../../../files/panopoly-kit dest=/usr/local/bin/panopoly-kit mode=0755
+
+- name: Clean up apt.
+  command: "{{ item }}"
+  with_items:
+    - apt-get -y autoremove
+    - apt-get -y clean
+
+- name: Update system
+  apt: upgrade=yes update_cache=yes
