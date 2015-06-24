@@ -38,7 +38,7 @@
 
   tasks:
     - name: Copy panopoly-kit command
-      copy: src=files/panopoly-kit dest=/usr/local/bin/panopoly-kit mode=0751
+      copy: src=files/panopoly-kit dest=/usr/local/bin/panopoly-kit mode=0755
 
     - name: Clean up apt.
       command: "{{ item }}"
