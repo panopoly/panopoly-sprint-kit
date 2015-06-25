@@ -1,4 +1,7 @@
 ---
+- name: Install DKMS
+  apt: pkg=dkms state=installed
+
 - name: Get VirtualBox version.
   shell: cat /home/{{ kit_ui_user }}/.vbox_version
   register: virtualbox_version
@@ -21,3 +24,6 @@
     src=/home/{{ kit_ui_user }}/VBoxGuestAdditions_{{ virtualbox_version.stdout }}.iso
     state=unmounted
     fstype=iso9660
+
+- name: Install VirtualBox Guest DKMS
+  apt: pkg=virtualbox-guest-dkms state=installed
