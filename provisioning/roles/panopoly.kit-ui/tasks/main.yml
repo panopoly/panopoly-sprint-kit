@@ -1,7 +1,11 @@
 ---
-- include: virtualbox.yml
+# Run initial clean up of the machine before installing the UI et all.
 - include: cleanup.yml
 
+# Set up GuestAdditions and DKMS.
+- include: virtualbox.yml
+
+# Install Ubuntu Desktop!
 - name: Install ubuntu-dektop
   apt: name=ubuntu-desktop state=installed
 

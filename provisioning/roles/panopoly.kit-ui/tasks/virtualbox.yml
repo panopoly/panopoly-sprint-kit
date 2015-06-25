@@ -1,7 +1,4 @@
 ---
-- name: Install DKMS
-  apt: pkg=dkms state=installed
-
 - name: Get VirtualBox version.
   shell: cat /home/{{ kit_ui_user }}/.vbox_version
   register: virtualbox_version
@@ -26,4 +23,13 @@
     fstype=iso9660
 
 - name: Install VirtualBox Guest DKMS
-  apt: pkg=virtualbox-guest-dkms state=installed
+  apt: pkg="{{ item }}" state=installed
+  with_items:
+    - dkms
+    - fakeroot
+    - libfakeroot
+    - virtualbox-guest-utils
+    - virtualbox-guest-x11
+    - dpkg-dev
+    - debhelper
+    - virtualbox-guest-dkms
