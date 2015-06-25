@@ -10,3 +10,25 @@
 
 - name: Update LightDM
   template: src=lightdm.conf dest=/etc/lightdm/lightdm.conf.d/50-panopoly-kit.conf
+
+- name: Remove unneeded desktop recommended items
+  apt: "pkg={{ item }} state=absent"
+  with_items:
+    - brasero
+    - cheese
+    - empathy
+    - gnome-sudoku
+    - gnomine
+    - libreoffice-calc
+    - libreoffice-gnome
+    - libreoffice-impress
+    - libreoffice-math
+    - libreoffice-ogltrans
+    - libreoffice-pdfimport
+    - libreoffice-presentation-minimizer
+    - libreoffice-style-human
+    - libreoffice-writer
+    - shotwell
+    - simple-scan
+    - thunderbird
+    - thunderbird-gnome-support
