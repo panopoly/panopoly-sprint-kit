@@ -36,3 +36,9 @@
     - simple-scan
     - thunderbird
     - thunderbird-gnome-support
+
+- name: Ensure user desktop directory
+  file: path=/home/{{ kit_ui_user }}/Desktop state=directory owner={{ kit_ui_user }} group={{ kit_ui_user }}
+
+- name: Create desktop shortcut to terminal
+  copy: src=terminal.desktop dest=/home/{{ kit_ui_user }}/Desktop/terminal.desktop owner={{ kit_ui_user }} group={{ kit_ui_user }} mode=0755

@@ -32,7 +32,8 @@
     "shutdown_command": "echo '{{user `user`}}'|sudo -S shutdown -P now",
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "2048"],
-      ["modifyvm", "{{.Name}}", "--cpus", "4"]
+      ["modifyvm", "{{.Name}}", "--cpus", "4"],
+      ["modifyvm", "{{.Name}}", "--vram", "256"]
     ],
     "virtualbox_version_file": ".vbox_version",
     "vm_name": "panopoly-kit"

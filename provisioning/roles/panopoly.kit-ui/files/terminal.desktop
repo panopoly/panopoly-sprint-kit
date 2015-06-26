@@ -1,0 +1,18 @@
+[Desktop Entry]
+name=Terminal
+Comment=Use the command line
+TryExec=gnome-terminal
+Exec=gnome-terminal
+Icon=utilities-terminal
+Type=Application
+Categories=GNOME;GTK;Utility;TerminalEmulator
+StartupNotify=true
+OnlyShowIn=GNOME;Unity;
+Keywords=Run;
+Actions=New
+X-Ubuntu-Gettext-Domain=gnome-terminal
+
+[Desktop Action New]
+Name=New Terminal
+Exec=gnome-terminal
+OnlyShowIn=GNOME;Unity;
