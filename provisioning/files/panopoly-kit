@@ -11,19 +11,19 @@ if ! [ -d "$PANOPOLY_HOME" ]; then
 	# TODO: Copy behat.yml and build.properties into place.
 
 	# TODO: Remove this once Issue #2509166 is committed.
-	PANOPOLY_PHING_PATCH=https://www.drupal.org/files/issues/panopoly-phing-2509166-1.patch
+	PANOPOLY_PHING_PATCH=https://www.drupal.org/files/issues/panopoly-phing-2509166-8.patch
 	MYTMPDIR=$(mktemp -dt panopoly-kit-XXX)
 	mkdir $MYTMPDIR
 	wget $PANOPOLY_PHING_PATCH -O $MYTMPDIR/issue2509166.patch
 	(cd $PANOPOLY_HOME && patch -p1 < $MYTMPDIR/issue2509166.patch)
 	rm -rf $MYTMPDIR
 
-	# TODO: Install all our dependencies with composer.
-	#(cd $PANOPOLY_HOME && composer global install)
+	# Install all our build dependencies with composer.
+	cp $PANOPOLY_HOME/composer.{json,lock} $HOME/
+	composer install -d $HOME
 
 	# Build, install, and test Panopoly.
-	# TODO: Actually do the install and test steps once they exist!
-	(cd $PANOPOLY_HOME && phing build-core);
+	(cd $PANOPOLY_HOME && phing make-core)
 fi
 
 # If we are in desktop mode, then we start a couple default applications!
