@@ -23,6 +23,8 @@ mysql_innodb_flush_log_at_trx_commit: "2"
 
 mysql_databases:
   - { name: panopoly }
+mysql_users:
+  - { name: panopoly, password: "panopoly", priv: "panopoly.*:ALL" }
 
 #PHP
 php_memory_limit: "256M"
