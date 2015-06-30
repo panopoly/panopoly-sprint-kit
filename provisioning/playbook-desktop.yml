@@ -5,6 +5,7 @@
 
   vars_files:
     - config/main.yml
+    - config/desktop.yml
 
   pre_tasks:
     - name: Update apt cache if needed.
