@@ -19,7 +19,8 @@ if ! [ -d "$PANOPOLY_HOME" ]; then
 	rm -rf $MYTMPDIR
 
 	# Install all our build dependencies with composer.
-	cp $PANOPOLY_HOME/composer.{json,lock} $HOME/
+	ln -s $PANOPOLY_HOME/composer.json $HOME/
+	ln -s $PANOPOLY_HOME/composer.lock $HOME/
 	composer install -d $HOME
 
 	# Build, install, and test Panopoly.
