@@ -1,7 +1,7 @@
 {
   "variables": {
-    "user": "vagrant",
-    "password": "vagrant",
+    "user": "panopoly",
+    "password": "panopoly",
     "hostname": "panopoly-kit.dev"
   },
   "builders": [{
@@ -27,7 +27,7 @@
     "iso_checksum_type": "md5",
     "ssh_username": "{{user `user`}}",
     "ssh_password": "{{user `password`}}",
-    "ssh_wait_timeout": "45m",
+    "ssh_wait_timeout": "30m",
     "shutdown_command": "echo '{{user `user`}}'|sudo -S shutdown -P now",
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "2048"],
