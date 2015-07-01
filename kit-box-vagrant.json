@@ -27,7 +27,7 @@
     "iso_checksum_type": "md5",
     "ssh_username": "{{user `user`}}",
     "ssh_password": "{{user `password`}}",
-    "ssh_wait_timeout": "30m",
+    "ssh_wait_timeout": "45m",
     "shutdown_command": "echo '{{user `user`}}'|sudo -S shutdown -P now",
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "2048"],
