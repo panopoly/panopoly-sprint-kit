@@ -1,5 +1,5 @@
 ---
-- hosts: vagrant
+- hosts: localhost
   gather_facts: yes
   sudo: yes
 
