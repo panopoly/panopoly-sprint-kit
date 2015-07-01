@@ -12,7 +12,7 @@
   copy: src=../../../files/panopoly-kit dest=/usr/local/bin/panopoly-kit mode=0755
 
 - name: Make /var/www writable by www-data
-  file: path=/var/www owner=root group=www-data mode="g+as"
+  file: path=/var/www owner=root group=www-data mode="g+rws"
 
 - name: Add our user to the www-data group
   user: name={{kit_user}} groups=www-data append=yes

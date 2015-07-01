@@ -19,6 +19,9 @@
         - curl
         - vim
 
+    - name: Create the Vagrant user
+      user: name=vagrant shell=/bin/bash
+
   roles:
     - geerlingguy.packer-debian
     - geerlingguy.ntp
