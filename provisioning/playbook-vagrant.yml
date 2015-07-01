@@ -1,5 +1,5 @@
 ---
-- hosts: panopoly
+- hosts: vagrant
   gather_facts: yes
   sudo: yes
 
