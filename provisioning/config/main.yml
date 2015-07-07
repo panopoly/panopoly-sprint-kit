@@ -33,8 +33,4 @@ php_apc_enabled_in_ini: true
 php_apc_stat: "0"
 
 #Composer
-composer_global_packages:
-  - { name: phing/phing, release: "2.*" }
-  - { name: phpunit/phpunit, release: "4.7.*" }
-  - { name: behat/behat, release: "3.0.10" }
-  - { name: pear/versioncontrol_git, release: "dev-master" }
+composer_global_packages: []
