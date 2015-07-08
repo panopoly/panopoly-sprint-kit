@@ -35,6 +35,10 @@ EOF
 	(cd $PANOPOLY_HOME && phing install)
 fi
 
+# Just in case, we change the permissions on /var/www/panopoly-kit.
+sudo chown -R panopoly:www-data /var/www/panopoly-kit
+sudo find /var/www/panopoly-kit -type d -exec chmod g+wrs \{\} \;
+
 # If we are in desktop mode, then we start a couple default applications!
 if [ -n "$DISPLAY" ]; then
 	# TODO: Detect if PHPStorm is installed. If not, download the installer
