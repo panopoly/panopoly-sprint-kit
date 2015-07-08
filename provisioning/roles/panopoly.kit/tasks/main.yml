@@ -16,3 +16,6 @@
 
 - name: Add our user to the www-data group
   user: name={{kit_user}} groups=www-data append=yes
+
+- name: Install Java (for Selenium)
+  command: apt-get install openjdk-7-jre-headless
