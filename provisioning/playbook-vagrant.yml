@@ -1,10 +1,11 @@
 ---
-- hosts: panopoly
+- hosts: localhost
   gather_facts: yes
   sudo: yes
 
   vars_files:
     - config/main.yml
+    - config/vagrant.yml
 
   pre_tasks:
     - name: Update apt cache if needed.
@@ -17,6 +18,9 @@
         - wget
         - curl
         - vim
+
+    - name: Create the Vagrant user
+      user: name=vagrant shell=/bin/bash
 
   roles:
     - geerlingguy.packer-debian

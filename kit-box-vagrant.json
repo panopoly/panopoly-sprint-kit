@@ -1,7 +1,7 @@
 {
   "variables": {
-    "user": "vagrant",
-    "password": "vagrant",
+    "user": "panopoly",
+    "password": "panopoly",
     "hostname": "panopoly-kit.dev"
   },
   "builders": [{
@@ -19,8 +19,8 @@
     "type": "virtualbox-iso",
     "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
     "guest_os_type": "Ubuntu_64",
-    "boot_wait": "4s",
-    "headless": false,
+    "boot_wait": "5s",
+    "headless": true,
     "http_directory": "http",
     "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04.2-server-amd64.iso",
     "iso_checksum": "83aabd8dcf1e8f469f3c72fff2375195",
@@ -49,7 +49,7 @@
     {
       "type": "ansible-local",
       "playbook_dir": "provisioning",
-      "playbook_file": "provisioning/playbook.yml",
+      "playbook_file": "provisioning/playbook-vagrant.yml",
       "inventory_file": "provisioning/inventory",
       "role_paths": [
         "provisioning/roles/geerlingguy.packer-debian",
