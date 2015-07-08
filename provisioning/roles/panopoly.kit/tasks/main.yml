@@ -18,4 +18,6 @@
   user: name={{kit_user}} groups=www-data append=yes
 
 - name: Install Java (for Selenium)
-  command: apt-get install openjdk-7-jre-headless
+  apt:
+    name: openjdk-7-jre-headless
+    state: installed
