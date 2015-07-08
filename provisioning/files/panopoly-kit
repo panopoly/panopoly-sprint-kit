@@ -30,8 +30,9 @@ EOF
 	ln -s $PANOPOLY_HOME/composer.lock $HOME/
 	composer install -d $HOME
 
-	# Build, install, and test Panopoly.
-	(cd $PANOPOLY_HOME && phing make-core)
+	# Build, install, and get all dependencies.
+	(cd $PANOPOLY_HOME && phing setup-all)
+	(cd $PANOPOLY_HOME && phing install)
 fi
 
 # If we are in desktop mode, then we start a couple default applications!
