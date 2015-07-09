@@ -44,4 +44,4 @@
   file: path=/home/{{ kit_ui_user }}/Desktop state=directory owner={{ kit_ui_user }} group={{ kit_ui_user }}
 
 - name: Create desktop shortcut to terminal
-  copy: src=terminal.desktop dest=/home/{{ kit_ui_user }}/Desktop/Terminal owner={{ kit_ui_user }} group={{ kit_ui_user }} mode=0755
+  copy: src=terminal.desktop dest=/home/{{ kit_ui_user }}/Desktop/Terminal.desktop owner={{ kit_ui_user }} group={{ kit_ui_user }} mode=0755
