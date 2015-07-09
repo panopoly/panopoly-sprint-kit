@@ -3,7 +3,7 @@ hostname: panopoly-kit.dev
 ntp_timezone: America/Chicago
 
 apache_vhosts:
-  - { servername: 'panopoly-kit.dev', documentroot: '/var/www/panopoly-kit' }
+  - { servername: 'default.panopoly-kit.dev', documentroot: '/var/www/panopoly-kit' }
 
 # MySQL
 mysql_root_password: root

@@ -14,7 +14,7 @@ if ! [ -d "$PANOPOLY_HOME" ]; then
 build.mode = dev
 build.core.dir = /var/www/panopoly-kit
 drush.site-install.db_url = mysqli://panopoly:panopoly@localhost/panopoly
-test.behat.base_url = http://panopoly-kit.dev/
+test.behat.base_url = http://default.panopoly-kit.dev/
 EOF
 
 	# Install all our build dependencies with composer.
@@ -22,9 +22,10 @@ EOF
 	ln -s $PANOPOLY_HOME/composer.lock $HOME/
 	composer install -d $HOME
 
-	# Build, install, and get all dependencies.
+	# Build, get all dependencies, install and run a single test.
 	(cd $PANOPOLY_HOME && phing setup-all)
 	(cd $PANOPOLY_HOME && phing install)
+	(cd $PANOPOLY_HOME && phing test -Dtest.behat.args=features/text_widget.feature)
 fi
 
 # Just in case, we change the permissions on /var/www/panopoly-kit.
