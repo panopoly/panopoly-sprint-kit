@@ -17,14 +17,6 @@ drush.site-install.db_url = mysqli://panopoly:panopoly@localhost/panopoly
 test.behat.base_url = http://panopoly-kit.dev/
 EOF
 
-	# TODO: Remove this once Issue #2509166 is committed.
-	PANOPOLY_PHING_PATCH=https://www.drupal.org/files/issues/panopoly-phing-2509166-8.patch
-	MYTMPDIR=$(mktemp -dt panopoly-kit-XXX)
-	mkdir $MYTMPDIR
-	wget $PANOPOLY_PHING_PATCH -O $MYTMPDIR/issue2509166.patch
-	(cd $PANOPOLY_HOME && patch -p1 < $MYTMPDIR/issue2509166.patch)
-	rm -rf $MYTMPDIR
-
 	# Install all our build dependencies with composer.
 	ln -s $PANOPOLY_HOME/composer.json $HOME/
 	ln -s $PANOPOLY_HOME/composer.lock $HOME/
