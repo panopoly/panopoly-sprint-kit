@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+name=Panopoly Kit
+Comment=Start the Panopoly Kit, performing any necessary setup first.
+TryExec=panopoly-kit
+Exec=panopoly-kit
+Type=Application
+Categories=Utility;Application
+StartupNotify=true
+OnlyShowIn=GNOME;Unity;
+Terminal=true
