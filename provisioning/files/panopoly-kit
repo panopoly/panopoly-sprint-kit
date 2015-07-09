@@ -3,9 +3,31 @@
 echo "Welcome to the Panopoly Sprint Kit"
 
 PANOPOLY_HOME=$HOME/Desktop/panopoly
+BROWSER=firefox
+SPRINT_DOC_URL=http://bit.ly/panopoly-sprint
+SPRINT_DOC_OPENED=no
+PHPSTORM_URL=http://download.jetbrains.com/webide/PhpStorm-9.0.tar.gz
 
 # Setup Panopoly source code.
 if ! [ -d "$PANOPOLY_HOME" ]; then
+	echo
+	echo "*********************************************************************"
+	echo "Downloading the Panopoly code base to:"
+	echo "	  $PANOPOLY_HOME"
+	echo
+	echo "... and building, installing and running a test."
+	echo
+	if [ -n $DISPLAY ]; then
+		echo "This may take a while, so I opened the sprint doc for you to read"
+		echo "while you wait! This is a great time to grab a coffee too. :-)"
+		$BROWSER $SPRINT_DOC_URL >/dev/null 2>&1 &
+		SPRINT_DOC_OPENED=yes
+	else
+		echo "This may take a while, so you'd better grab a coffee! :-)"
+	fi
+	echo "*********************************************************************"
+	echo
+
 	git clone --branch 7.x-1.x http://git.drupal.org/project/panopoly.git $PANOPOLY_HOME
 
 	# Create build.properties.
@@ -26,6 +48,12 @@ EOF
 	(cd $PANOPOLY_HOME && phing setup-all)
 	(cd $PANOPOLY_HOME && phing install)
 	(cd $PANOPOLY_HOME && phing test -Dtest.behat.args=features/text_widget.feature)
+
+	echo
+	echo "*********************************************************************"
+	echo "Ok! You've got the code and Panopoly should be installed."
+	echo "*********************************************************************"
+	echo
 fi
 
 # Just in case, we change the permissions on /var/www/panopoly-kit.
@@ -34,12 +62,28 @@ sudo find /var/www/panopoly-kit -type d -exec chmod g+wrs \{\} \;
 
 # If we are in desktop mode, then we start a couple default applications!
 if [ -n "$DISPLAY" ]; then
-	# TODO: Detect if PHPStorm is installed. If not, download the installer
-	#       and run it. IF so, just start PHPStorm.
+	# Detect if PHPStorm is installed. If not, download the installer
+	# and run it.
+	if ! [ -e $HOME/PHPStorm/bin/phpstorm.sh ]; then
+		echo
+		echo "*********************************************************************"
+		echo "You don't have PHPStorm! I'm downloading it for you now..."
+		echo "*********************************************************************"
+		echo
+		wget $PHPSTORM_URL -O $HOME/PHPStorm.tar.gz
+		mkdir $HOME/PHPStorm
+		(cd $HOME && tar -xzvf PHPStorm.tar.gz -C PHPStorm --strip-components=1)
+	fi
 
-	# TODO: Open a web-browser pointing at the local Panopoly site.
+	# And finally start PHPStorm!
+	$HOME/PHPStorm/bin/phpstorm.sh &
 
-	# TODO: Open a web-browser pointing at the sprint document.
-	true
+	# Open a web-browser pointing at the sprint document (if we haven't already)
+	if [ $SPRINT_DOC_OPENED = no ]; then
+		$BROWSER $SPRINT_DOC_URL >/dev/null 2>&1 &
+		sleep 10
+	fi
+
+	# Open a web-browser pointing at the local Panopoly site.
+	$BROWSER http://default.panopoly-kit.dev/ >/dev/null 2>&1 &
 fi
-

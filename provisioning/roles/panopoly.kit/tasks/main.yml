@@ -17,9 +17,9 @@
 - name: Add our user to the www-data group
   user: name={{kit_user}} groups=www-data append=yes
 
-- name: Install Java (for Selenium)
+- name: Install Java (for Selenium and PHPStorm)
   apt:
-    name: openjdk-7-jre-headless
+    name: openjdk-7-jdk
     state: installed
 
  # @todo: geerlingguy.php should install this, but doesn't for some reason. We
