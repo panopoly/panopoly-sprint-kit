@@ -21,3 +21,10 @@
   apt:
     name: openjdk-7-jre-headless
     state: installed
+
+ # @todo: geerlingguy.php should install this, but doesn't for some reason. We
+ # should figure out why and fix it! For now, force it again...
+- name: Install PHP gd extension
+  apt:
+    name: php5-gd
+    state: installed
