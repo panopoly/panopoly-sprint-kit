@@ -87,3 +87,7 @@ if [ -n "$DISPLAY" ]; then
 	# Open a web-browser pointing at the local Panopoly site.
 	$BROWSER http://default.panopoly-kit.dev/ >/dev/null 2>&1 &
 fi
+
+echo
+echo "Press CTRL-C to continue."
+cat
