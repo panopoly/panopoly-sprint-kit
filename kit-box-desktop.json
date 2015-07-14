@@ -33,7 +33,8 @@
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "2048"],
       ["modifyvm", "{{.Name}}", "--cpus", "4"],
-      ["modifyvm", "{{.Name}}", "--vram", "256"]
+      ["modifyvm", "{{.Name}}", "--vram", "256"],
+      ["modifyvm", "{{.Name}}", "--clipboard", "bidirectional"]
     ],
     "virtualbox_version_file": ".vbox_version",
     "vm_name": "panopoly-kit"
