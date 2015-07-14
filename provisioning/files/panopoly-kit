@@ -78,14 +78,18 @@ if [ -n "$DISPLAY" ]; then
 	# And finally start PHPStorm!
 	$HOME/PHPStorm/bin/phpstorm.sh &
 
+	BROWSER_CMD=""
+
 	# Open a web-browser pointing at the sprint document (if we haven't already)
 	if [ $SPRINT_DOC_OPENED = no ]; then
-		$BROWSER $SPRINT_DOC_URL >/dev/null 2>&1 &
-		sleep 10
+		BROWSER_CMD="$BROWSER_CMD -new-tab -url $SPRINT_DOC_URL"
 	fi
 
 	# Open a web-browser pointing at the local Panopoly site.
-	$BROWSER http://default.panopoly-kit.dev/ >/dev/null 2>&1 &
+	BROWSER_CMD="$BROWSER_CMD -new-tab -url http://default.panopoly-kit.dev/ -new-tab -url https://kiwiirc.com/client/irc.freenode.net?server_select_channel=#panopoly"
+
+	# Do it!
+	$BROWSER $BROWSER_CMD >/dev/null 2>&1 &
 fi
 
 echo
