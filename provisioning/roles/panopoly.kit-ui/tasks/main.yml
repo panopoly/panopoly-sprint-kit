@@ -48,3 +48,10 @@
 
 - name: Create desktop shortcut to panopoly-kit
   copy: src=panopoly-kit.desktop dest=/home/{{ kit_ui_user }}/Desktop/Panopoly-Kit.desktop owner={{ kit_ui_user }} group={{ kit_ui_user }} mode=0755
+
+- name: Initialize PhpStorm configuration
+  # synchronize: recursive=yes archive=no src=PhpStormConfig dest=/home/{{ kit_ui_user }}/.WebIde90 owner={{ kit_ui_user }} group={{ kit_ui_user }}
+  # local_action: tar -zcvf {{ role_path }}/files/PhpStormConfig.tar.gz {{ role_path }}/files/PhpStormConfig/
+
+# - name: Unpack PhpStorm Configuration
+  unarchive: src=.WebIde90.tar.gz dest=/home/{{ kit_ui_user }}/

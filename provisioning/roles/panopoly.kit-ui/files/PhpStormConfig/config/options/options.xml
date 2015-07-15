@@ -1,0 +1,15 @@
+<application>
+  <component name="PropertiesComponent">
+    <property name="log.debug.categories" value="" />
+    <property name="evlsprt3.9" value="19" />
+    <property name="DefaultHtmlDoctype.MigrateToHtml5" value="true" />
+    <property name="DefaultHtmlDoctype.Refreshed" value="1" />
+    <property name="PhpStorm.InitialConfiguration" value="true" />
+    <property name="installation.uid" value="e954f67e-5b84-4817-9d85-a439e97a7706" />
+    <property name="PhpStorm.initialConfigurationShown" value="true" />
+    <property name="file.colors.enable.non.project" value="Yellow" />
+    <property name="ProjectStructure.SecondLevelElements" value="0.2" />
+    <property name="file.chooser.recent.files" value="$USER_HOME$/bin/phing&#10;/home/panopoly/composer.json&#10;/home/panopoly/bin/composer-php" />
+    <property name="Non-Project Files" value="Yellow" />
+  </component>
+</application>

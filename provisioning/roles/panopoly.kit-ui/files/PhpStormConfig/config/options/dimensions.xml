@@ -1,0 +1,10 @@
+<application>
+  <component name="DimensionService">
+    <location key="#Browse_JetBrains_Plugins_.0.0.1325.722" x="65" y="54" />
+    <location key="FileChooserDialogImpl.0.0.1325.722" x="487" y="183" />
+    <location key="SettingsEditor.0.0.1325.722" x="178" y="58" />
+    <size key="#Browse_JetBrains_Plugins_.0.0.1325.722" width="824" height="666" />
+    <size key="FileChooserDialogImpl.0.0.1325.722" width="424" height="495" />
+    <size key="SettingsEditor.0.0.1325.722" width="1052" height="664" />
+  </component>
+</application>
