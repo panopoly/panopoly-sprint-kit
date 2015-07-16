@@ -28,3 +28,9 @@
   apt:
     name: php5-gd
     state: installed
+
+- name: Ensure /usr/local/share/panopoly-kit directory
+  file: path=/usr/local/share/panopoly-kit state=directory owner=root group=root
+
+- name: Create PHPStorm project file
+  copy: src=../../../files/phpstorm-project.tar.gz dest=/usr/local/share/panopoly-kit/phpstorm-project.tar.gz owner=root group=root mode=0755

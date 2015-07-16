@@ -7,6 +7,7 @@ BROWSER=firefox
 SPRINT_DOC_URL=http://bit.ly/panopoly-sprint
 SPRINT_DOC_OPENED=no
 PHPSTORM_URL=http://download.jetbrains.com/webide/PhpStorm-9.0.tar.gz
+DATA_DIR=/usr/local/share/panopoly-kit
 
 # Setup Panopoly source code.
 if ! [ -d "$PANOPOLY_HOME" ]; then
@@ -48,6 +49,9 @@ EOF
 	(cd $PANOPOLY_HOME && phing setup-all)
 	(cd $PANOPOLY_HOME && phing install)
 	(cd $PANOPOLY_HOME && phing test -Dtest.behat.args=features/text_widget.feature)
+
+	# Create the PHPStorm project.
+	(cd /var/www/panopoly-kit && tar -xzf $DATA_DIR/phpstorm-project.tar.gz)
 
 	echo
 	echo "*********************************************************************"
